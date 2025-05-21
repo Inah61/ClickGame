@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Clicker Game - Reach 1M Clicks!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  body {
+    margin:0; padding:0;
+    background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+    color: #eee;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    user-select: none;
+  }
+  /* Moving background gradient animation */
+  body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: radial-gradient(circle at 20% 20%, #444 10%, transparent 40%),
+                radial-gradient(circle at 80% 80%, #666 10%, transparent 40%);
+    background-size: 100% 100%;
+    animation: bgmove 30s linear infinite;
+    z-index: -1;
+    opacity: 0.2;
+  }
+  @keyframes bgmove {
+    0% {background-position: 0% 0%, 100% 100%;}
+    50% {background-position: 100% 100%, 0% 0%;}
+    100% {background-position: 0% 0%, 100% 100%;}
+  }
+  header {
+    text-align: center;
+    margin: 2rem 1rem 1rem;
+    font-weight: 600;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
+  }
+  #game {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #222;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 15px #0ff8;
+  }
+  #click-btn {
+    width: 100%;
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: 700;
+    border-radius: 15px;
+    border:none;
+    background: linear-gradient(145deg, #0ff, #06c);
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 0 20px #0ff;
+    transition: transform 0.1s ease;
+    user-select: none;
+  }
+  #click-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 30px #0ff inset;
+  }
+  .stats {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #ccc;
+    display: flex;
+    justify-content: space-between;
+  }
+  #shop {
+    margin-top: 2rem;
+    border-top: 1px solid #0ff3;
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .item {
+    background: #111;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 45%;
+    box-shadow: 0 0 10px #0ff8 inset;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  .item:hover {
+    background: #0ff1;
+  }
+  .item h3 {
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    color: #0ff;
+  }
+  .item p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0.3rem 0;
+  }
+  .item button {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    background: #06c;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  .item button:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+  .item button:hover:not(:disabled) {
+    background: #0ff;
+    color: #000;
+  }
+  #ads {
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+  }
+  iframe {
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 300px;
+    height: 250px;
+    box-shadow: 0 0 15px #0ff8;
+  }
+  @media (min-width: 700px) {
+    #game {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #shop {
+      width: 100%;
+      max-width: 600px;
+    }
+    #ads iframe {
+      width: 160px;
+      height: 300px;
+      margin: 0 auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>Click to Reach 1 Million!</header>
+
+<div id="game">
+  <button id="click-btn">Click me!</button>
+  <div class="stats">
+    <div>Clicks: <span id="click-count">0</span></div>
+    <div>Coins: <span id="coins-count">0</span></div>
+  </div>
+  
+  <div id="shop">
+    <div class="item" data-id="multiplier">
+      <h3>Multiplier x2</h3>
+      <p>Cost: <span class="cost">50</span> coins</p>
+      <button>Buy</button>
+    </div>
+    <div class="item" data-id="auto-click">
+      <h3>Auto Click (+1/sec)</h3>
+      <p>Cost: <span class="cost">100</span> coins</p>
+      <button>Buy</button>
+    </div>
+    <div class="item" data-id="bonus">
+      <h3>Bonus +10 coins per click</h3>
+      <p>Cost: <span class="cost">200</span> coins</p>
+      <button>Buy</button>
+    </div>
+  </div>
+</div>
+
+<div id="ads">
+  <!-- Adsterra iframe script -->
+  <script type="text/javascript">
+    atOptions = {
+      'key' : '3ebccf16238acd6dd1ceb15b31039432',
+      'format' : 'iframe',
+      'height' : 300,
+      'width' : 160,
+      'params' : {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/3ebccf16238acd6dd1ceb15b31039432/invoke.js"></script>
+</div>
+
+<script>
+  const clickBtn = document.getElementById('click-btn');
+  const clickCountSpan = document.getElementById('click-count');
+  const coinsCountSpan = document.getElementById('coins-count');
+  const shop = document.getElementById('shop');
+
+  let clicks = 0;
+  let coins = 0;
+  let multiplier = 1;
+  let autoClick = 0;
+  let bonusPerClick = 0;
+
+  // Shop items data
+  const itemsData = {
+    multiplier: {cost: 50, level: 0},
+    'auto-click': {cost: 100, level: 0},
+    bonus: {cost: 200, level: 0}
+  };
+
+  clickBtn.addEventListener('click', () => {
+    clicks++;
+    coins += multiplier + bonusPerClick;
+    updateDisplay();
+  });
+
+  function updateDisplay() {
+    clickCountSpan.textContent = clicks.toLocaleString();
+    coinsCountSpan.textContent = coins.toLocaleString();
+
+    // Disable buttons if no money
+    [...shop.querySelectorAll('.item')].forEach(itemEl => {
+      const id = itemEl.getAttribute('data-id');
+      const btn = itemEl.querySelector('button');
+      btn.disabled = coins < itemsData[id].cost;
+      itemEl.querySelector('.cost').textContent = itemsData[id].cost.toLocaleString();
+    });
+  }
+
+  shop.addEventListener('click', e => {
+    if(e.target.tagName !== 'BUTTON') return;
+
+    const itemEl = e.target.closest('.item');
+    const id = itemEl.getAttribute('data-id');
+    const item = itemsData[id];
+
+    if(coins >= item.cost) {
+      coins -= item.cost;
+      item.level++;
+
+      if(id === 'multiplier') {
+        multiplier = 1 + item.level;
+        item.cost = Math.floor(item.cost * 1.7);
+      } else if(id === 'auto-click') {
+        autoClick = item.level;
+        item.cost = Math.floor(item.cost * 2);
+      } else if(id === 'bonus') {
+        bonusPerClick = item.level * 10;
+        item.cost = Math.floor(item.cost * 2.2);
+      }
+      updateDisplay();
+    }
+  });
+
+  // Auto click logic
+  setInterval(() => {
+    if(autoClick > 0) {
+      clicks += autoClick;
+      coins += autoClick * (multiplier + bonusPerClick);
+      updateDisplay();
+    }
+  }, 1000);
+
+  updateDisplay();
+</script>
+
+</body>
+</html>
